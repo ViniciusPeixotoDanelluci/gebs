@@ -1,12 +1,13 @@
-extends Sprite
+extends Sprite2D
 
-onready var tween: = $Tween as Tween
+var tween: Tween
 
 #func _physics_process(delta):
 #	global_position = get_global_mouse_position()
 
 func hit():
-	tween.interpolate_property(	self, "modulate", Color.red, Color.white, .5, 
+	tween = create_tween()
+	tween.interpolate_property(self, "modulate", Color.RED, Color.WHITE, .5, 
 								Tween.TRANS_QUART, Tween.EASE_OUT)
 	tween.start()
 

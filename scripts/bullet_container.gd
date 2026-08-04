@@ -12,7 +12,7 @@ var all_bullets: = []
 
 # ---------------------------------------------------------------------------- #
 func initialize_pool(bullet_res: Resource, pool_size: int) -> BulletPool:
-	print("initialize pool: ", float(OS.get_ticks_msec()) / 1000.0)
+	print("initialize pool: ", float(Time.get_ticks_msec()) / 1000.0)
 	var _complete: bool
 	var pool: = BulletPool.new()
 	var pool_id: = pools.size()
@@ -21,10 +21,10 @@ func initialize_pool(bullet_res: Resource, pool_size: int) -> BulletPool:
 	while !_complete:
 		var n: = 0
 		for i in pool_size:
-			var bullet: Bullet = bullet_res.bullet.instance()
+			var bullet: Bullet = bullet_res.bullet.instantiate()
 			setup_bullet(bullet, bullet_res)
 			bullet.pool_id = pool_id
-			bullet.connect("reallocate", self, "reallocate_bullet", [i])
+			bullet.connect("reallocate_bullet", Callable(self, "reallocate_bullet").bind(i))
 			pool.all_bullets.append(bullet)
 			all_bullets.append(bullet)
 			pool.pool.append(bullet)
@@ -32,10 +32,10 @@ func initialize_pool(bullet_res: Resource, pool_size: int) -> BulletPool:
 			n += 1
 			if n == 1000:
 				n = 0
-				yield(get_tree(), "idle_frame")
+				await get_tree().process_frame
 		_complete = true
 	
-	print("bullets added to scene %s: %s" % [self, float(OS.get_ticks_msec()) / 1000.0])
+	print("bullets added to scene %s: %s" % [self, float(Time.get_ticks_msec()) / 1000.0])
 	return pool
 
 func setup_bullet(bullet: Bullet, bullet_res: Resource):

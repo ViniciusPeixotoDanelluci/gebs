@@ -13,33 +13,38 @@ enum RandBulletAngleMode {OFF=1, ZERO_TO_SIGN=0, FULL_RANGE=-1}
 """
 
 # ---------------------------------------------------------------------------- #
-export (SpawnMode) var spawn_mode setget set_spawn_mode
-export (ReleaseMode) var local_release_mode
-export (AimMode) var aim_mode setget set_aim_mode
-export (LineMode) var line_mode setget set_line_mode
-export var rand_spawn_points: bool
-export var line_point_count: = 2 setget set_line_point_count
-export var radius: int = 64 setget set_radius
-export var line_length: int = 64 setget set_line_length
-export (float, EASE) var point_curve: = 1.0 setget set_point_curve
+@export var spawn_mode: SpawnMode: set = set_spawn_mode
+@export var local_release_mode: ReleaseMode
+@export var aim_mode: AimMode: set = set_aim_mode
+@export var line_mode: LineMode: set = set_line_mode
+@export var rand_spawn_points: bool
+@export var line_point_count: int = 2: set = set_line_point_count
+@export var radius: int = 64: set = set_radius
+@export var line_length: int = 64: set = set_line_length
+@export var point_curve: float = 1.0: set = set_point_curve
 
-export (float, 0, 360, 0.1) var arc_width_degrees = 110 setget set_arc_width_degrees
-export (float, -360, 360, 0.1) var arc_rotation_degrees = 0 setget set_arc_rotation_degrees
+@export var arc_width_degrees: int = 110: set = set_arc_width_degrees
+@export var arc_rotation_degrees: int = 0: set = set_arc_rotation_degrees
 
-export var offset: int setget set_offset
-export (float, -360.0, 360.0, 0.1) var offset_rotation setget set_offset_rotation
+@export var offset: int: set = set_offset
+@export var offset_rotation: float : set = set_offset_rotation
 
-export (float, -179.9, 179.9, 0.1) var bullet_angle: = 0.0 setget set_bullet_angle
-export (float, 0, 360.0, 0.1) var line_angle: = 0.0 setget set_line_angle
-export (RandBulletAngleMode) var rand_bullet_angle_mode: = RandBulletAngleMode.OFF \
-													 setget set_rand_bullet_angle_mode
-export var global_bullet_angle: bool setget set_global_bullet_angle
-export var remove_dupes: = false setget set_remove_dupes
+@export var bullet_angle: float = 0.0: set = set_bullet_angle
+@export var line_angle: float = 0.0: set = set_line_angle
+@export var rand_bullet_angle_mode := RandBulletAngleMode.OFF:
+	set(value):
+		rand_bullet_angle_mode = value
+		if value == RandBulletAngleMode.OFF:
+			self.bullet_angle = cached_bullet_angle
+		update_spawn_points = true
+		
+@export var global_bullet_angle: bool: set = set_global_bullet_angle
+@export var remove_dupes: = false: set = set_remove_dupes
 
 # ---------------------------------------------------------------------------- #
 var circle_state: int
 var line_midpoints: = []
-var arc_offset: = Vector2.ZERO setget set_arc_offset
+var arc_offset: = Vector2.ZERO: set = set_arc_offset
 
 var cached_bullet_angle: float
 var rand_bullet_angle_oneshot: bool
@@ -48,7 +53,7 @@ var rand_bullet_angle_oneshot: bool
 # ---------------------------------------------------------------------------- #
 func _setup():
 	# call setters to update at ready
-	._setup()
+	super._setup()
 	self.point_count = point_count
 	self.spawn_mode = spawn_mode
 	self.line_mode = line_mode
@@ -60,13 +65,13 @@ func _setup():
 func _draw():
 	if !VISUAL:
 		return
-	var adjusted_radian: float = deg2rad(arc_rotation_degrees / 2)
-	var arc_width_radians = deg2rad(arc_width_degrees / 2)
+	var adjusted_radian: float = deg_to_rad(arc_rotation_degrees / 2)
+	var arc_width_radians = deg_to_rad(arc_width_degrees / 2)
 	draw_arc(arc_offset, radius, arc_width_radians + adjusted_radian, \
-			-arc_width_radians + adjusted_radian, 32, Color.aquamarine, 3)
+			-arc_width_radians + adjusted_radian, 32, Color.AQUAMARINE, 3)
 	calculate_bullet_spawn_points()
-	draw_circle(Vector2(offset, 0), 4, Color.blue)
-	draw_circle(Vector2.ZERO, 4, Color.green)
+	draw_circle(Vector2(offset, 0), 4, Color.BLUE)
+	draw_circle(Vector2.ZERO, 4, Color.GREEN)
 	
 	if global_bullet_angle:
 		if rand_bullet_angle_mode != RandBulletAngleMode.OFF:
@@ -75,21 +80,20 @@ func _draw():
 		SpawnMode.RADIAL:
 			for point in spawn_points:
 				var dir: Vector2 = calculate_bullet_direction(point)
-				draw_line(point, 8 * dir + point, Color.white, 3)
-				draw_circle(point, 4, Color.red)
+				draw_line(point, 8 * dir + point, Color.WHITE, 3)
+				draw_circle(point, 4, Color.RED)
 		SpawnMode.LINE:
 			if !line_length:
 				return
-			draw_line(spawn_points[0], spawn_points.back(), Color.blueviolet, 3)
+			draw_line(spawn_points[0], spawn_points.back(), Color.BLUE_VIOLET, 3)
 			var dir: = calculate_bullet_direction(line_midpoints[0])
 			if !dir:
 				dir = Vector2.RIGHT
 			for point in spawn_points:
-				draw_line(point, 12 * dir + point, Color.white, 3)
-				draw_circle(point, 4, Color.red)
+				draw_line(point, 12 * dir + point, Color.WHITE, 3)
+				draw_circle(point, 4, Color.RED)
 			for point in line_midpoints:
-				draw_circle(point, 4, Color.bisque)
-				
+				draw_circle(point, 4, Color.BISQUE)
 		SpawnMode.MULTI_LINE:
 			if !line_length:
 				return
@@ -101,14 +105,14 @@ func _draw():
 				if end_point >= spawn_points.size():
 					# When changing
 					break
-				draw_line(spawn_points[idx], spawn_points[end_point], Color.blueviolet, 3)
-				draw_circle(point, 4, Color.bisque)
+				draw_line(spawn_points[idx], spawn_points[end_point], Color.BLUE_VIOLET, 3)
+				draw_circle(point, 4, Color.BISQUE)
 				i += 1
 				idx = end_point + 1
 				for n in line_point_count:
 					var pos: Vector2 = spawn_points[p]
-					draw_line(pos, 8 * direction + pos, Color.white, 3)
-					draw_circle(pos, 2, Color.red)
+					draw_line(pos, 8 * direction + pos, Color.WHITE, 3)
+					draw_circle(pos, 2, Color.RED)
 					p += 1
 
 
@@ -123,7 +127,7 @@ func spawn_bullet():
 	var p: = []; var dupes: = []
 	var n: = 0; var idx: = 0			# MultiLine midpoint idx and counter
 	for pos in spawn_points:
-		if pool.pool.empty():	break
+		if pool.pool.is_empty():	break
 		if remove_dupes:
 			var skip: = p.has(pos)
 			p.append(pos)
@@ -152,9 +156,9 @@ func spawn_bullet():
 			bullet.max_speed = 0
 			local_pool.append(bullet)
 		bullet.init(pos, dir)
-	.spawn_bullet()
+	super.spawn_bullet()
 
-func release_local_bullets(speed: = bullet_res.max_speed):
+func release_local_bullets(speed: float= bullet_res.max_speed):
 	var global_dir: Vector2
 	if global_bullet_angle:
 		global_dir = calculate_bullet_direction(Vector2.ZERO)
@@ -214,7 +218,7 @@ func calculate_bullet_spawn_points():
 			var start_angle: float = -(arc_width_degrees / 2.0)
 			for n in point_count:
 				var angle: float = angle_step * n if point_count != 1 else angle_step
-				var radians: = deg2rad(start_angle + angle)
+				var radians: = deg_to_rad(start_angle + angle)
 				var midpoint: = calculate_point_on_circle(radians)
 				calculate_points_on_line(radians)
 				line_midpoints.append(midpoint)
@@ -230,7 +234,7 @@ func calculate_points_on_arc():
 	var start_angle: float = -(arc_width_degrees / 2.0)
 	for n in point_count:
 		var angle: float = angle_step * n if point_count > 1 else angle_step
-		var radians: = deg2rad(start_angle + angle)
+		var radians: = deg_to_rad(start_angle + angle)
 		var point: Vector2 = calculate_point_on_circle(radians)
 		spawn_points.append(point)
 
@@ -239,11 +243,11 @@ func randomize_arc_points():
 	var angle_step: float = arc_width_degrees / p
 	var start_angle: float = -(arc_width_degrees / 2.0)
 	for n in point_count:
-		var angle: = rand_range(0.0, float(point_count - 1)) \
+		var angle: = randf_range(0.0, float(point_count - 1)) \
 					if point_count > 1 \
-					else rand_range(0.0, float(point_count)) 
+					else randf_range(0.0, float(point_count)) 
 		angle *= angle_step
-		var radians: = deg2rad(start_angle + angle)
+		var radians: = deg_to_rad(start_angle + angle)
 		var point: Vector2 = calculate_point_on_circle(radians)
 		spawn_points.append(point)
 
@@ -257,26 +261,26 @@ func calculate_bullet_direction(point: Vector2) -> Vector2:
 			match spawn_mode:
 				SpawnMode.LINE:
 					if global_bullet_angle:			# follows bullet angle
-						var radians: = deg2rad(bullet_angle + 90)
+						var radians: = deg_to_rad(bullet_angle + 90)
 						relative_direction = Vector2(sin(radians), cos(radians))
 						spawn_dir = relative_direction
 					else:							# follows line angle
 						spawn_dir = arc_offset.direction_to(point)
-						var radians: = deg2rad(line_angle + bullet_angle)
+						var radians: = deg_to_rad(line_angle + bullet_angle)
 						spawn_dir = spawn_dir.rotated(radians)
 				
 				SpawnMode.MULTI_LINE:
 					if global_bullet_angle:			# follows bullet angle
-						var radians: = deg2rad(bullet_angle + 90)
+						var radians: = deg_to_rad(bullet_angle + 90)
 						spawn_dir = Vector2(sin(radians), cos(radians))
 					else:							# follows line angle
 						spawn_dir = arc_offset.direction_to(point)
-						var radians: = deg2rad(line_angle + bullet_angle)
+						var radians: = deg_to_rad(line_angle + bullet_angle)
 						spawn_dir = spawn_dir.rotated(radians)
 			
 				SpawnMode.RADIAL:
 					if global_bullet_angle:
-						var radians: = deg2rad(bullet_angle + 90)
+						var radians: = deg_to_rad(bullet_angle + 90)
 						relative_direction = Vector2(sin(radians), cos(radians))
 					else:
 						relative_direction +=  Vector2.ZERO \
@@ -290,13 +294,13 @@ func calculate_bullet_direction(point: Vector2) -> Vector2:
 	return spawn_dir
 
 func calculate_bullet_angle_adjustment(point: Vector2) -> Vector2:
-	var added_angle: = deg2rad(bullet_angle)
+	var added_angle: = deg_to_rad(bullet_angle)
 	var adjusted_direction: Vector2
 	adjusted_direction = (point - arc_offset).rotated(added_angle).normalized()
 	return adjusted_direction
 
 func calculate_point_on_circle(angle_radians: float) -> Vector2:
-	var adjusted_rotation: = deg2rad(arc_rotation_degrees / 2)
+	var adjusted_rotation: = deg_to_rad(arc_rotation_degrees / 2)
 	return Vector2(	arc_offset.x + radius * cos(angle_radians + adjusted_rotation),
 					arc_offset.y + radius * sin(angle_radians + adjusted_rotation))
 
@@ -309,21 +313,21 @@ func calculate_points_on_line(angle_radians: float):
 	
 	match line_mode:
 		LineMode.CENTERED:
-			var tangent: = line_center.tangent().normalized()
-			tangent = calculate_line_angle_adjustments(line_center, tangent)
-			var pos: = line_center - (line_length / 2.0 * tangent)
+			var orthogonal: = line_center.orthogonal().normalized()
+			orthogonal = calculate_line_angle_adjustments(line_center, orthogonal)
+			var pos: = line_center - (line_length / 2.0 * orthogonal)
 			if !rand_spawn_points:
 				for n in line_point_count:
 					var point: Vector2
 					if !use_curve:
-						point = ((dist_step * n) * tangent) + pos
+						point = ((dist_step * n) * orthogonal) + pos
 					else:
 						var e: = ease((n+1) / float(line_point_count), point_curve)
-						point = e * line_length * tangent + pos
+						point = e * line_length * orthogonal + pos
 					point = point.round()
 					spawn_points.append(point)
 			else:
-				randomize_line_points(pos, tangent)
+				randomize_line_points(pos, orthogonal)
 		
 		LineMode.END:
 			var dir: = line_center.normalized()
@@ -352,19 +356,19 @@ func randomize_line_points(pos: Vector2, dir: Vector2):
 func calculate_line_angle_adjustments(point: Vector2, dir: Vector2) -> Vector2:
 	var angle: = line_angle if line_mode != LineMode.END else line_angle - 180
 	if angle:
-		dir = dir.rotated(deg2rad(angle))
+		dir = dir.rotated(deg_to_rad(angle))
 	elif aim_mode == AimMode.TARGET && !global_bullet_angle:
 		var radians: = (point + global_position).angle_to_point(target.global_position)
-		radians += deg2rad(angle) if line_angle else 0.0
+		radians += deg_to_rad(angle) if line_angle else 0.0
 		dir = dir.rotated(radians)
 	return dir
 
 func randomize_bullet_angle():
 	randomize()
-	bullet_angle = rand_range(cached_bullet_angle, cached_bullet_angle * rand_bullet_angle_mode)
+	bullet_angle = randf_range(cached_bullet_angle, cached_bullet_angle * rand_bullet_angle_mode)
 
 func calculate_offset():
-	var rad: = deg2rad(offset_rotation / 2.0)
+	var rad: = deg_to_rad(offset_rotation / 2.0)
 	var center: = Vector2(cos(rad), sin(rad)) * offset
 	arc_offset = center
 

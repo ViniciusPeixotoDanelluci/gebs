@@ -7,24 +7,24 @@ Base class for BulletSpawners; bullet pooling and helper functions
 signal pool_initialized
 
 # ---------------------------------------------------------------------------- #
-export var VISUAL: bool = true
+@export var VISUAL: bool = true
 
-export var bullet_container: NodePath
-export var bullet_res: Resource
-export var local_bullets: bool setget set_local_bullets
-export var pool_size: = 100
-export var point_count: = 3 setget set_point_count
-export var rotation_speed: = 0.0 setget set_rotation_speed
+@export var bullet_container: NodePath
+@export var bullet_res: Resource
+@export var local_bullets: bool: set = set_local_bullets
+@export var pool_size: = 100
+@export var point_count: = 3: set = set_point_count
+@export var rotation_speed: = 0.0: set = set_rotation_speed
 
-export (float, 0.0, 0.5, 0.05) var bullet_scale_modifier setget set_bullet_scale_modifier
-export (float, 0.0, 0.5, 0.05) var bullet_speed_modifier setget set_bullet_speed_modifier
-
-# ---------------------------------------------------------------------------- #
-onready var viewport: Viewport
+@export var bullet_scale_modifier: float : set = set_bullet_scale_modifier
+@export var bullet_speed_modifier: float : set = set_bullet_speed_modifier
 
 # ---------------------------------------------------------------------------- #
-var active: = false setget set_active
-var pool: Reference
+@onready var viewport: SubViewport
+
+# ---------------------------------------------------------------------------- #
+var active: = false: set = set_active
+var pool: RefCounted
 var local_pool: = []
 var spawn_points: = []
 var update_spawn_points: = true
@@ -32,15 +32,15 @@ var update_speed_modifier: = false
 var update_scale_modifier: = false
 
 
-var target setget set_target
+var target : set = set_target
 
 
 # ---------------------------------------------------------------------------- #
-func _get_configuration_warning():
+func _get_configuration_warnings():
 	var err: = ""
 	if !bullet_res:
 		err += "No bullet scene\n"
-	return err
+	return [err]
 
 func _input(event):
 	if event.is_action_pressed("LEFT_CLICK"):
@@ -55,9 +55,9 @@ func _ready():
 	_setup()
 	if bullet_container:
 		var bc: BulletContainer= get_node(bullet_container)
-		pool = yield(bc.initialize_pool(bullet_res, pool_size), "completed")
-		emit_signal("pool_initialized")
-	update()
+		pool = await bc.initialize_pool(bullet_res, pool_size)
+		pool_initialized.emit()
+	queue_redraw()
 
 func _setup():
 	self.active = active
@@ -67,7 +67,7 @@ func _setup():
 func _physics_process(delta):
 	apply_rotation()
 	handle_local_bullets()
-	update()
+	queue_redraw()
 
 func spawn_bullet():
 	return
@@ -82,7 +82,7 @@ func handle_local_bullets():
 				bullet.position = pos + global_position
 			idx += 1
 
-func release_local_bullets(speed: = bullet_res.max_speed):
+func release_local_bullets(speed: float = bullet_res.max_speed):
 	for bullet in local_pool:
 		bullet.max_speed = speed
 		bullet.dir = calculate_bullet_direction(bullet.position)
@@ -109,7 +109,7 @@ func apply_rotation():
 
 func rand_modifier(modifier: float) -> float:
 	randomize()
-	return rand_range(-modifier, modifier)
+	return randf_range(-modifier, modifier)
 
 
 # ---------------------------------------------------------------------------- #
@@ -125,6 +125,7 @@ func set_point_count(value: int):
 	point_count = value
 	if value <= 0:
 		push_warning("%s :: point count cannot == 0, value defaulted to 1" % [name])
+		
 		point_count = 1
 	update_spawn_points = true
 
@@ -135,7 +136,7 @@ func set_bullet_scale_modifier(value: float):
 	if bullet_scale_modifier != value:
 		bullet_scale_modifier = value
 		if !pool:
-			yield(self, "pool_initialized")
+			await self.pool_initialized
 		for bullet in pool.all_bullets:
 			var scale_mod: = rand_modifier(bullet_scale_modifier) if bullet_scale_modifier else 0.0
 			bullet.apply_scale_modifier(scale_mod)
@@ -144,7 +145,7 @@ func set_bullet_speed_modifier(value: float):
 	if bullet_speed_modifier != value:
 		bullet_speed_modifier = value
 		if !pool:
-			yield(self, "pool_initialized")
+			await self.pool_initialized
 		for bullet in pool.all_bullets:
 			var speed_mod: = rand_modifier(bullet_speed_modifier) if bullet_speed_modifier else 0.0
 			bullet.apply_speed_modifier(speed_mod)
@@ -152,4 +153,3 @@ func set_bullet_speed_modifier(value: float):
 func set_target(value):
 	target = value
 	update_spawn_points = true
-

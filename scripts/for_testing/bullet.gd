@@ -1,12 +1,12 @@
 extends CollisionShape2D
 class_name Bullet
 
-signal reallocate
+signal reallocate_bullet
 signal _continue
 
-export var align_sprite: bool
+@export var align_sprite: bool
 
-onready var sprite: = $Sprite as Sprite
+@onready var sprite: = $Sprite2D as Sprite2D
 
 var damage: int = 1
 var max_speed: float
@@ -19,7 +19,7 @@ var rotation_speed: int
 var dir : Vector2
 var velocity: Vector2
 
-var active: bool setget set_active
+var active: bool: set = set_active
 var pool_id: int
 var is_local: bool
 
@@ -77,7 +77,7 @@ func set_active(value: bool):
 func apply_scale_modifier(scale_mod: float):
 	if active:
 		_yielded = true
-		yield(self, "_continue")
+		await self._continue
 	
 	if !_scale:
 		_scale = scale
@@ -90,7 +90,7 @@ func apply_scale_modifier(scale_mod: float):
 func apply_speed_modifier(speed_mod: float):
 	if active:
 		_yielded = true
-		yield(self, "_continue")
+		await self._continue
 	
 	if!_speed:
 		_speed = max_speed
@@ -100,5 +100,4 @@ func apply_speed_modifier(speed_mod: float):
 		max_speed = _speed
 
 func _on_VisibilityNotifier2D_screen_exited():
-	emit_signal("reallocate")
-
+	emit_signal("reallocate_bullet")
