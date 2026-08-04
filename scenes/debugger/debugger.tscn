@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bf20kgffccjgl"]
+
+[ext_resource type="Script" uid="uid://clxcxmyk82rga" path="res://scenes/debugger/debugger.gd" id="1_rqpq1"]
+
+[node name="Debugger" type="CanvasLayer" unique_id=1931359190]
+process_mode = 3
+script = ExtResource("1_rqpq1")
+
+[node name="_" type="Control" parent="." unique_id=2083121070]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="_" type="FoldableContainer" parent="_" unique_id=461321663]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -217.0
+offset_bottom = 225.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 14
+title = "Debugger"
+
+[node name="DebuggerContainer" type="PanelContainer" parent="_/_" unique_id=506586546]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="_" type="VBoxContainer" parent="_/_/DebuggerContainer" unique_id=1774315261]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FPS" type="Label" parent="_/_/DebuggerContainer/_" unique_id=1168929793]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "FPS: 60.0 (Process: 14.8 ms)"
+
+[node name="MemoryUsage" type="Label" parent="_/_/DebuggerContainer/_" unique_id=1018779556]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Memory: 900.8 MB"
+
+[node name="Objects" type="Label" parent="_/_/DebuggerContainer/_" unique_id=1189996045]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Objs:  | Nodes 35 | Res: 6"
+
+[node name="DrawNumber" type="Label" parent="_/_/DebuggerContainer/_" unique_id=1569460735]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Draw calls: 462"
+
+[node name="Time" type="Label" parent="_/_/DebuggerContainer/_" unique_id=2141938131]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Elapsed Time: "
+
+[node name="Bullets" type="Label" parent="_/_/DebuggerContainer/_" unique_id=1033775897]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Bullets on Screen: "
+
+[node name="Fullscreen" type="CheckButton" parent="_/_/DebuggerContainer/_" unique_id=1928238434]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Fullscreen"
+
+[connection signal="toggled" from="_/_/DebuggerContainer/_/Fullscreen" to="." method="_on_fullscreen_toggled"]

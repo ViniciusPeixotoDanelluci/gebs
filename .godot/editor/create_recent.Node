@@ -1,1 +1,6 @@
+FoldableContainer
+CharacterBody2D
+HBoxContainer
+Label
+HSlider
 Control

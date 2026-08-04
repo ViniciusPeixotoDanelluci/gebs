@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bjrafjthebrxi" path="res://scripts/for_testing/target.gd" id="6_fo65b"]
 [ext_resource type="Script" uid="uid://cqw20e10k0bnn" path="res://scripts/for_testing/test_timer.gd" id="7_tfmu6"]
 [ext_resource type="PackedScene" uid="uid://umhcxdues32s" path="res://scenes/pattern_manager/pattern_manager.tscn" id="8_oprom"]
+[ext_resource type="PackedScene" uid="uid://bf20kgffccjgl" path="res://scenes/debugger/debugger.tscn" id="9_behgd"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 32.0
@@ -471,6 +472,8 @@ horizontal_alignment = 1
 [node name="PatternManager" parent="." unique_id=1931359190 node_paths=PackedStringArray("bullet_spawner", "pattern_start_timer") instance=ExtResource("8_oprom")]
 bullet_spawner = NodePath("../main/bullet_spawner")
 pattern_start_timer = NodePath("../main/Timer")
+
+[node name="Debugger" parent="." unique_id=141869206 instance=ExtResource("9_behgd")]
 
 [connection signal="area_shape_entered" from="main/target/Area2D" to="main/target" method="_on_area_shape_entered"]
 [connection signal="timeout" from="main/Timer" to="main/bullet_spawner" method="spawn_bullet"]

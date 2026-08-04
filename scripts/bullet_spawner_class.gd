@@ -64,7 +64,7 @@ func _setup():
 
 
 # ---------------------------------------------------------------------------- #
-func _physics_process(delta):
+func _physics_process(_delta):
 	apply_rotation()
 	handle_local_bullets()
 	queue_redraw()
@@ -97,10 +97,10 @@ func release_local_bullets(speed: float = bullet_res.max_speed):
 func calculate_bullet_spawn_points():
 	pass
 
-func calculate_bullet_direction(point: Vector2) -> Vector2:
+func calculate_bullet_direction(_point: Vector2) -> Vector2:
 	return Vector2.ZERO
 
-func calculate_bullet_angle_adjustment(point: Vector2) -> Vector2:
+func calculate_bullet_angle_adjustment(_point: Vector2) -> Vector2:
 	return Vector2.ZERO
 
 func apply_rotation():

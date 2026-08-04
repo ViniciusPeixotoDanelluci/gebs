@@ -1,7 +1,7 @@
 extends BulletSpawner
 class_name RadialBulletSpawner
 
-enum CircleState {CIRCUMFERENCE, ARC}
+enum CircleState {ARC, CIRCUMFERENCE}
 enum SpawnMode {RADIAL, LINE, MULTI_LINE}
 enum ReleaseMode {RADIAL, LINE}
 enum AimMode {NONE, TARGET}
@@ -31,13 +31,13 @@ enum RandBulletAngleMode {OFF=1, ZERO_TO_SIGN=0, FULL_RANGE=-1}
 
 @export var bullet_angle: float = 0.0: set = set_bullet_angle
 @export var line_angle: float = 0.0: set = set_line_angle
-@export var rand_bullet_angle_mode := RandBulletAngleMode.OFF:
+@export var rand_bullet_angle_mode: = RandBulletAngleMode.OFF:
 	set(value):
 		rand_bullet_angle_mode = value
 		if value == RandBulletAngleMode.OFF:
 			self.bullet_angle = cached_bullet_angle
 		update_spawn_points = true
-		
+
 @export var global_bullet_angle: bool: set = set_global_bullet_angle
 @export var remove_dupes: = false: set = set_remove_dupes
 
@@ -65,8 +65,8 @@ func _setup():
 func _draw():
 	if !VISUAL:
 		return
-	var adjusted_radian: float = deg_to_rad(arc_rotation_degrees / 2)
-	var arc_width_radians = deg_to_rad(arc_width_degrees / 2)
+	var adjusted_radian: float = deg_to_rad(arc_rotation_degrees / 2.0)
+	var arc_width_radians: float = deg_to_rad(arc_width_degrees / 2.0)
 	draw_arc(arc_offset, radius, arc_width_radians + adjusted_radian, \
 			-arc_width_radians + adjusted_radian, 32, Color.AQUAMARINE, 3)
 	calculate_bullet_spawn_points()
@@ -213,8 +213,8 @@ func calculate_bullet_spawn_points():
 			line_midpoints.append(midpoint)
 		
 		SpawnMode.MULTI_LINE:
-			var _pc = point_count - 1 if circle_state == CircleState.ARC else point_count
-			angle_step = arc_width_degrees / _pc
+			var _pc: int = point_count - 1 if circle_state == CircleState.ARC else point_count
+			angle_step = arc_width_degrees / float(_pc)
 			var start_angle: float = -(arc_width_degrees / 2.0)
 			for n in point_count:
 				var angle: float = angle_step * n if point_count != 1 else angle_step
@@ -227,10 +227,10 @@ func calculate_bullet_spawn_points():
 func calculate_points_on_arc():
 	var angle_step: = 0.0
 	if point_count > 1:
-		var p = point_count - 1 if circle_state == CircleState.ARC else point_count
-		angle_step = arc_width_degrees / p
+		var p: int = point_count - 1 if circle_state == CircleState.ARC else point_count
+		angle_step = arc_width_degrees / float(p)
 	else:
-		angle_step = arc_width_degrees / 2
+		angle_step = arc_width_degrees / 2.0
 	var start_angle: float = -(arc_width_degrees / 2.0)
 	for n in point_count:
 		var angle: float = angle_step * n if point_count > 1 else angle_step
@@ -239,8 +239,8 @@ func calculate_points_on_arc():
 		spawn_points.append(point)
 
 func randomize_arc_points():
-	var p: = point_count - 1 if point_count > 1 else point_count
-	var angle_step: float = arc_width_degrees / p
+	var p: int = point_count - 1 if point_count > 1 else point_count
+	var angle_step: float = arc_width_degrees / float(p)
 	var start_angle: float = -(arc_width_degrees / 2.0)
 	for n in point_count:
 		var angle: = randf_range(0.0, float(point_count - 1)) \
@@ -300,7 +300,7 @@ func calculate_bullet_angle_adjustment(point: Vector2) -> Vector2:
 	return adjusted_direction
 
 func calculate_point_on_circle(angle_radians: float) -> Vector2:
-	var adjusted_rotation: = deg_to_rad(arc_rotation_degrees / 2)
+	var adjusted_rotation: float = deg_to_rad(arc_rotation_degrees / 2.0)
 	return Vector2(	arc_offset.x + radius * cos(angle_radians + adjusted_rotation),
 					arc_offset.y + radius * sin(angle_radians + adjusted_rotation))
 
@@ -386,16 +386,16 @@ func get_global_direction() -> Vector2:
 
 # ---------------------------------------------------------------------------- #
 func set_spawn_mode(value: int):
-	spawn_mode = value
+	spawn_mode = value as SpawnMode
 	if spawn_mode == SpawnMode.MULTI_LINE && point_count < 2:
 		self.point_count = 2
 	update_spawn_points = true
 
 func set_aim_mode(value: int):
-	aim_mode = value
+	aim_mode = value as AimMode
 
 func set_line_mode(value: int):
-	line_mode = value
+	line_mode = value as LineMode
 	update_spawn_points = true
 
 func set_radius(value: int):
@@ -450,7 +450,7 @@ func set_line_angle(value: float):
 	update_spawn_points = true
 
 func set_rand_bullet_angle_mode(value: int):
-	rand_bullet_angle_mode = value
+	rand_bullet_angle_mode = value as RandBulletAngleMode
 	if value == RandBulletAngleMode.OFF:
 		self.bullet_angle = cached_bullet_angle
 	update_spawn_points = true
