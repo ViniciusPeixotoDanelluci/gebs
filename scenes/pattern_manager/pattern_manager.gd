@@ -18,7 +18,7 @@ func _ready() -> void:
 	pattern_start_timer.start()
 
 func _on_prop_change(property_name: String, new_value: Variant, _source: Control):
-	# source is here in case the signal emitter is needed, 
+	# Source is here in case the signal emitter is needed, 
 	# it's subjected to be removed in future updates
 
 	if !bullet_spawner:
@@ -40,7 +40,7 @@ func _on_get_prop(property_name: String, source: Control):
 			func(a): return a.name == property_name
 		)
 	)
-	# this is the same has:
+	# This is the same has:
 	#var prop_index = bullet_spawner.bullet_res.get_property_list()
 	#var propz = prop_index.get(prop_index.find_custom(func(a): return a.name == property_name))
 

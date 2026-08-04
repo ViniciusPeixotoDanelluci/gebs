@@ -15,3 +15,9 @@ res://scripts/radial_bullet_spawner.gd
 res://scenes/test_scene.tscn
 res://scripts/bullet_spawner_class.gd
 res://scripts/for_testing/target.gd
+res://scripts/bullet_resource.gd
+res://resources/test_bullet.tres
+res://scripts/bullet_container.gd
+res://resources/valgrid_bullet_1.tres
+res://resources/valgrid_bullet_2.tres
+res://bullet_assets/valgrind.txt

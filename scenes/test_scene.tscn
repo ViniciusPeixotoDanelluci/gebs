@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://jg0fi8xevw1w"]
 
 [ext_resource type="Script" uid="uid://d3gocbintq2pt" path="res://scripts/radial_bullet_spawner.gd" id="1"]
-[ext_resource type="Resource" path="res://resources/test_bullet.tres" id="2"]
+[ext_resource type="Resource" uid="uid://nn230i6auppp" path="res://resources/test_bullet.tres" id="2"]
 [ext_resource type="Script" uid="uid://bjrafjthebrxi" path="res://scripts/for_testing/target.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://c7wakyauay6sr" path="res://icon.png" id="4"]
 [ext_resource type="Script" uid="uid://dyv5ds3yteh3m" path="res://scripts/for_testing/main.gd" id="5"]

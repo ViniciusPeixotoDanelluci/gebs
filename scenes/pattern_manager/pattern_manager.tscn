@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cbl1nistg6alp" path="res://scenes/pattern_manager/property_value.gd" id="3_amd7b"]
 [ext_resource type="Script" uid="uid://bg4cx3ub830q1" path="res://scenes/pattern_manager/toggle_property_value.gd" id="4_ggytp"]
 [ext_resource type="Script" uid="uid://bb8bkxaurao5j" path="res://scenes/pattern_manager/property_slide_value.gd" id="4_mahyb"]
-[ext_resource type="PackedScene" uid="uid://cs1gqsvq67ssf" path="res://scenes/pattern_manager/global_bullet_angle.tscn" id="5_2rhwj"]
 [ext_resource type="Script" uid="uid://cgqknole6wamc" path="res://scenes/pattern_manager/option_property.gd" id="6_amd7b"]
 
 [node name="PatternManager" type="CanvasLayer" unique_id=1931359190 node_paths=PackedStringArray("all_settings")]
@@ -510,23 +509,32 @@ _initial_value = "0.0"
 _property_name = "line_angle"
 metadata/_custom_type_script = "uid://cbl1nistg6alp"
 
-[node name="RandomSpawnPoints" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=550607531 node_paths=PackedStringArray("_settings_container") instance=ExtResource("5_2rhwj")]
+[node name="RandomSpawnPoints" type="CheckButton" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=550607531 node_paths=PackedStringArray("_settings_container")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Random Spawn Points"
+script = ExtResource("4_ggytp")
 _settings_container = NodePath("../../..")
 _property_name = "rand_spawn_points"
+metadata/_custom_type_script = "uid://bg4cx3ub830q1"
 
-[node name="GlobalBulletAngle" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1712231149 node_paths=PackedStringArray("_settings_container") instance=ExtResource("5_2rhwj")]
+[node name="GlobalBulletAngle" type="CheckButton" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1712231149 node_paths=PackedStringArray("_settings_container")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Global Bullet Angle:"
+script = ExtResource("4_ggytp")
 _settings_container = NodePath("../../..")
 _property_name = "global_bullet_angle"
+metadata/_custom_type_script = "uid://bg4cx3ub830q1"
 
-[node name="RemoveDupes" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1359160984 node_paths=PackedStringArray("_settings_container") instance=ExtResource("5_2rhwj")]
+[node name="RemoveDupes" type="CheckButton" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1359160984 node_paths=PackedStringArray("_settings_container")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Remove Dupes:"
+script = ExtResource("4_ggytp")
 _settings_container = NodePath("../../..")
 _property_name = "remove_dupes"
+metadata/_custom_type_script = "uid://bg4cx3ub830q1"
 
 [node name="State&ModeSettings" type="FoldableContainer" parent="_/_" unique_id=397137966]
 unique_name_in_owner = true
@@ -843,6 +851,9 @@ enum_keys = "RandBulletAngleMode"
 [connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/LineLength/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/LineLength/PropertyValue" method="_on_property_value_submitted" flags=18]
 [connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/LinePointCount/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/LinePointCount/PropertyValue" method="_on_property_value_submitted" flags=18]
 [connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/LineAngle/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/LineAngle/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="toggled" from="_/_/SpawnerSettings/PatternManagerContainer/_/RandomSpawnPoints" to="_/_/SpawnerSettings/PatternManagerContainer/_/RandomSpawnPoints" method="_on_property_toggled" flags=18]
+[connection signal="toggled" from="_/_/SpawnerSettings/PatternManagerContainer/_/GlobalBulletAngle" to="_/_/SpawnerSettings/PatternManagerContainer/_/GlobalBulletAngle" method="_on_property_toggled" flags=18]
+[connection signal="toggled" from="_/_/SpawnerSettings/PatternManagerContainer/_/RemoveDupes" to="_/_/SpawnerSettings/PatternManagerContainer/_/RemoveDupes" method="_on_property_toggled" flags=18]
 [connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_/CircleState" to="_/_/State&ModeSettings/StateModeContainer/_/_/CircleState" method="_on_item_selected" flags=18]
 [connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_3/SpawnMode" to="_/_/State&ModeSettings/StateModeContainer/_/_3/SpawnMode" method="_on_item_selected" flags=18]
 [connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_2/ReleaseMode" to="_/_/State&ModeSettings/StateModeContainer/_/_2/ReleaseMode" method="_on_item_selected" flags=18]

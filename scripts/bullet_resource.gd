@@ -2,6 +2,8 @@ extends Resource
 class_name BulletResource
 
 @export var bullet: PackedScene
+@export var bullet_texture: Texture2D
+
 # ---------------------------------------------------------------------------- #
 @export_range(0.0, 30.0, 0.01) var max_speed: = 1.0
 @export var acceleration: float = 0.75

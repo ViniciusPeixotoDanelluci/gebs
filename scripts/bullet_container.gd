@@ -44,6 +44,7 @@ func setup_bullet(bullet: Bullet, bullet_res: Resource):
 	bullet.knockback_power = bullet_res.knockback_power
 	bullet.lifetime = bullet_res.lifetime
 	
+	bullet.get_child(0).texture = bullet_res.bullet_texture
 	bullet.position = Vector2.ZERO
 	bullet.visible = false
 

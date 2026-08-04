@@ -39,15 +39,15 @@ func _process(_delta: float) -> void:
 	var visible_bullets = get_tree().get_nodes_in_group("Bullet").filter(
 		func(node): return node.visible == true
 	).size()
-	
+
 	spawned_bullets.text = "Bullets on Screen: %d" % visible_bullets
 
 func _format_memory(bytes: float) -> String:
-	if bytes < 1024:
-		return "%d B" % bytes
-	elif bytes < 1024 * 1024:
-		return "%.1f KB" % (bytes / 1024)
-	else:
+	#if bytes < 1024:
+		#return "%d B" % bytes
+	#elif bytes < 1024 * 1024:
+		#return "%.1f KB" % (bytes / 1024)
+	#else:
 		return "%.1f MB" % (bytes / (1024 * 1024))
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
