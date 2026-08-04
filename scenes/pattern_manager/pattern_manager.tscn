@@ -1,0 +1,662 @@
+[gd_scene format=3 uid="uid://umhcxdues32s"]
+
+[ext_resource type="Script" uid="uid://dn8lcs8qhkxm4" path="res://scenes/pattern_manager/pattern_manager.gd" id="1_bt2ed"]
+[ext_resource type="Script" uid="uid://bpy6q8spikd52" path="res://scenes/pattern_manager/foldable_container_settings.gd" id="2_bt2ed"]
+[ext_resource type="Script" uid="uid://cbl1nistg6alp" path="res://scenes/pattern_manager/settings_property_value.gd" id="3_amd7b"]
+[ext_resource type="Script" uid="uid://bg4cx3ub830q1" path="res://scenes/pattern_manager/toggle_settings_property_value.gd" id="4_ggytp"]
+[ext_resource type="PackedScene" uid="uid://cs1gqsvq67ssf" path="res://scenes/pattern_manager/global_bullet_angle.tscn" id="5_2rhwj"]
+[ext_resource type="Script" uid="uid://cgqknole6wamc" path="res://scenes/pattern_manager/option_property.gd" id="6_amd7b"]
+
+[node name="PatternManager" type="CanvasLayer" unique_id=1931359190 node_paths=PackedStringArray("all_settings")]
+process_mode = 3
+script = ExtResource("1_bt2ed")
+all_settings = [NodePath("_/_/BulletSpawnerSettings"), NodePath("_/_/SpawnerSettings"), NodePath("_/_/State&ModeSettings")]
+
+[node name="_" type="Control" parent="." unique_id=2083121070]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="_" type="VBoxContainer" parent="_" unique_id=1509841935]
+layout_mode = 0
+offset_right = 276.0
+offset_bottom = 470.0
+theme_override_constants/separation = 0
+
+[node name="BulletSpawnerSettings" type="FoldableContainer" parent="_/_" unique_id=1170434088]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Bullet Spawner Settings"
+script = ExtResource("2_bt2ed")
+
+[node name="ColorRect" type="ColorRect" parent="_/_/BulletSpawnerSettings" unique_id=2059660109]
+layout_mode = 2
+color = Color(0.7350776, 0.3057807, 1, 1)
+
+[node name="PatternManagerContainer" type="PanelContainer" parent="_/_/BulletSpawnerSettings" unique_id=1215155288]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="_" type="VBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer" unique_id=191929643]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PointCount" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=1467850922]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount" unique_id=1715988226]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Point Count:"
+
+[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount" unique_id=1180910600]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount" unique_id=355125604 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+placeholder_text = "0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 2
+_initial_value = "8"
+_property_name = "point_count"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="RotationSpeed" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=612348445]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed" unique_id=737479984]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Rotation Speed:"
+
+[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed" unique_id=1258711372]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed" unique_id=1698343113 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+placeholder_text = "0.0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 3
+_initial_value = "0.0"
+_property_name = "rotation_speed"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="BulletScaleModifier" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=1197246508]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=1245226104]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Bullet Scale Modifier:"
+
+[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=1607334412]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=640570932 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+placeholder_text = "0.0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 3
+_initial_value = "0.0"
+_property_name = "bullet_scale_modifier"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="BulletSpeedModifier" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=223445621]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=392609340]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Bullet Speed Modifier:"
+
+[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=1456140861]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=163247225 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+placeholder_text = "0.0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 3
+_initial_value = "0.0"
+_property_name = "bullet_speed_modifier"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="ToggleLocalBullets" type="CheckButton" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=914798847 node_paths=PackedStringArray("_settings_container")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "LocalBullets"
+script = ExtResource("4_ggytp")
+_property_name = "local_bullets"
+_settings_container = NodePath("../../..")
+
+[node name="ToggleVisual" type="CheckButton" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=526751268 node_paths=PackedStringArray("_settings_container")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "DrawVisual"
+script = ExtResource("4_ggytp")
+_property_name = "VISUAL"
+_settings_container = NodePath("../../..")
+_initial_value = true
+
+[node name="BulletResourceTODO" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=907540697]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletResourceTODO" unique_id=1366286682]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Bullet Resource:"
+
+[node name="OptionValue" type="OptionButton" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletResourceTODO" unique_id=1013249015]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+selected = 0
+item_count = 1
+popup/item_0/text = "Test Bullet"
+popup/item_0/id = 0
+
+[node name="SpawnerSettings" type="FoldableContainer" parent="_/_" unique_id=512516814]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Spawner Settings"
+script = ExtResource("2_bt2ed")
+
+[node name="_" type="ColorRect" parent="_/_/SpawnerSettings" unique_id=1832097689]
+layout_mode = 2
+color = Color(0.99815804, 0.6426373, 0.5894919, 1)
+
+[node name="PatternManagerContainer" type="PanelContainer" parent="_/_/SpawnerSettings" unique_id=506586546]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="_" type="VBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer" unique_id=1774315261]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LinePointCount" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1106011648]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LinePointCount" unique_id=1033775897]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Line Point Count:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LinePointCount" unique_id=985676501]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LinePointCount" unique_id=903380892 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0"
+virtual_keyboard_type = 2
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 2
+_initial_value = "2"
+_property_name = "line_point_count"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="Radius" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=80197507]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/Radius" unique_id=416085313]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Radius:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/Radius" unique_id=1383906378]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/Radius" unique_id=524177332 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0"
+virtual_keyboard_type = 2
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 2
+_initial_value = "64"
+_property_name = "radius"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="LineLength" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1486907987]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LineLength" unique_id=1646940930]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Line Length:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LineLength" unique_id=1904510201]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LineLength" unique_id=979419773 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0"
+virtual_keyboard_type = 2
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 2
+_initial_value = "200"
+_property_name = "line_length"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="PointCurve" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1215303899]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/PointCurve" unique_id=1811910219]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Point Curve:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/PointCurve" unique_id=1366709088]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/PointCurve" unique_id=2019045925 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0.0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 3
+_initial_value = "1.0"
+_property_name = "point_curve"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="ArcWidthDegrees" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1241225457]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/ArcWidthDegrees" unique_id=2082713842]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Arc Width Degrees:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/ArcWidthDegrees" unique_id=669074420]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/ArcWidthDegrees" unique_id=1503182879 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 2
+_initial_value = "110"
+_property_name = "arc_width_degrees"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="ArcRotationDegrees" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1910546831]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/ArcRotationDegrees" unique_id=1852164166]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Arc Rotation Degrees:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/ArcRotationDegrees" unique_id=1583776013]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/ArcRotationDegrees" unique_id=1416228835 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0"
+virtual_keyboard_type = 2
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 2
+_property_name = "arc_rotation_degrees"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="Offset" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=14673881]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/Offset" unique_id=1376790276]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Offset:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/Offset" unique_id=303738490]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/Offset" unique_id=1908394329 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0"
+virtual_keyboard_type = 2
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 2
+_property_name = "offset"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="OffsetRotation" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1250686429]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/OffsetRotation" unique_id=194393961]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Offset Rotation:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/OffsetRotation" unique_id=1399015668]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/OffsetRotation" unique_id=1992427373 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0.0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 3
+_initial_value = "0.0"
+_property_name = "offset_rotation"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="BulletAngle" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=202627671]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/BulletAngle" unique_id=2031624737]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Bullet Angle:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/BulletAngle" unique_id=208681928]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/BulletAngle" unique_id=1933928915 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0.0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 3
+_initial_value = "0.0"
+_property_name = "bullet_angle"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="LineAngle" type="HBoxContainer" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1324841026]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LineAngle" unique_id=528494505]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Line Angle:"
+
+[node name="_" type="Control" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LineAngle" unique_id=993789482]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/SpawnerSettings/PatternManagerContainer/_/LineAngle" unique_id=852565190 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(136, 0)
+custom_maximum_size = Vector2(136, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "0.0"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../..")
+_value_type = 3
+_initial_value = "0.0"
+_property_name = "line_angle"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="RandomSpawnPoints" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=550607531 node_paths=PackedStringArray("_settings_container") instance=ExtResource("5_2rhwj")]
+layout_mode = 2
+text = "Random Spawn Points"
+_property_name = "rand_spawn_points"
+_settings_container = NodePath("../../..")
+
+[node name="GlobalBulletAngle" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1712231149 node_paths=PackedStringArray("_settings_container") instance=ExtResource("5_2rhwj")]
+layout_mode = 2
+text = "Global Bullet Angle:"
+_property_name = "global_bullet_angle"
+_settings_container = NodePath("../../..")
+
+[node name="RemoveDupes" parent="_/_/SpawnerSettings/PatternManagerContainer/_" unique_id=1359160984 node_paths=PackedStringArray("_settings_container") instance=ExtResource("5_2rhwj")]
+layout_mode = 2
+text = "Remove Dupes:"
+_property_name = "remove_dupes"
+_settings_container = NodePath("../../..")
+
+[node name="State&ModeSettings" type="FoldableContainer" parent="_/_" unique_id=397137966]
+unique_name_in_owner = true
+layout_mode = 2
+title = "States&Modes"
+script = ExtResource("2_bt2ed")
+
+[node name="_" type="ColorRect" parent="_/_/State&ModeSettings" unique_id=1381967941]
+layout_mode = 2
+color = Color(0.53751826, 0.7862048, 1, 1)
+
+[node name="StateModeContainer" type="PanelContainer" parent="_/_/State&ModeSettings" unique_id=1129871743]
+layout_mode = 2
+
+[node name="_" type="VBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer" unique_id=1403294293]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="_" type="HBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer/_" unique_id=1677386642]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/State&ModeSettings/StateModeContainer/_/_" unique_id=301722752]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Cicle State:"
+
+[node name="_" type="Control" parent="_/_/State&ModeSettings/StateModeContainer/_/_" unique_id=306049545]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CircleState" type="OptionButton" parent="_/_/State&ModeSettings/StateModeContainer/_/_" unique_id=1250009880 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(120, 0)
+custom_maximum_size = Vector2(120, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+script = ExtResource("6_amd7b")
+_settings_container = NodePath("../../../..")
+
+[node name="_3" type="HBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer/_" unique_id=596250238]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/State&ModeSettings/StateModeContainer/_/_3" unique_id=644529812]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Spawn Mode:"
+
+[node name="_" type="Control" parent="_/_/State&ModeSettings/StateModeContainer/_/_3" unique_id=2000043201]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpawnMode" type="OptionButton" parent="_/_/State&ModeSettings/StateModeContainer/_/_3" unique_id=725989488 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(120, 0)
+custom_maximum_size = Vector2(120, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+script = ExtResource("6_amd7b")
+enum_keys = "SpawnMode"
+_settings_container = NodePath("../../../..")
+
+[node name="_2" type="HBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer/_" unique_id=953728522]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/State&ModeSettings/StateModeContainer/_/_2" unique_id=138917279]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Release Mode:"
+
+[node name="_" type="Control" parent="_/_/State&ModeSettings/StateModeContainer/_/_2" unique_id=669923875]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReleaseMode" type="OptionButton" parent="_/_/State&ModeSettings/StateModeContainer/_/_2" unique_id=1229367921 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(120, 0)
+custom_maximum_size = Vector2(120, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+script = ExtResource("6_amd7b")
+enum_keys = "ReleaseMode"
+_settings_container = NodePath("../../../..")
+
+[node name="_5" type="HBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer/_" unique_id=651203245]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/State&ModeSettings/StateModeContainer/_/_5" unique_id=18323361]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Aim Mode:"
+
+[node name="_" type="Control" parent="_/_/State&ModeSettings/StateModeContainer/_/_5" unique_id=955214930]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AimMode" type="OptionButton" parent="_/_/State&ModeSettings/StateModeContainer/_/_5" unique_id=1307041087 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(120, 0)
+custom_maximum_size = Vector2(120, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+script = ExtResource("6_amd7b")
+enum_keys = "AimMode"
+_settings_container = NodePath("../../../..")
+
+[node name="_6" type="HBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer/_" unique_id=119115942]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/State&ModeSettings/StateModeContainer/_/_6" unique_id=1375940275]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Line Mode:"
+
+[node name="_" type="Control" parent="_/_/State&ModeSettings/StateModeContainer/_/_6" unique_id=339823254]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineMode" type="OptionButton" parent="_/_/State&ModeSettings/StateModeContainer/_/_6" unique_id=132006624 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(120, 0)
+custom_maximum_size = Vector2(120, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+script = ExtResource("6_amd7b")
+enum_keys = "LineMode"
+_settings_container = NodePath("../../../..")
+
+[node name="_4" type="HBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer/_" unique_id=572994230]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/State&ModeSettings/StateModeContainer/_/_4" unique_id=135875809]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Random Bullet Angle Mode:"
+
+[node name="_" type="Control" parent="_/_/State&ModeSettings/StateModeContainer/_/_4" unique_id=263373055]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RandBulletAngleMode" type="OptionButton" parent="_/_/State&ModeSettings/StateModeContainer/_/_4" unique_id=1836185600 node_paths=PackedStringArray("_settings_container")]
+custom_minimum_size = Vector2(120, 0)
+custom_maximum_size = Vector2(120, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+script = ExtResource("6_amd7b")
+enum_keys = "RandBulletAngleMode"
+_settings_container = NodePath("../../../..")
+
+[connection signal="text_submitted" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount/PropertyValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed/PropertyValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier/PropertyValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier/PropertyValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="toggled" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleLocalBullets" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleLocalBullets" method="_on_property_toggled" flags=18]
+[connection signal="toggled" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleVisual" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleVisual" method="_on_property_toggled" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/LinePointCount/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/LinePointCount/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/Radius/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/Radius/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/LineLength/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/LineLength/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/PointCurve/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/PointCurve/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/ArcWidthDegrees/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/ArcWidthDegrees/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/ArcRotationDegrees/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/ArcRotationDegrees/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/Offset/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/Offset/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/OffsetRotation/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/OffsetRotation/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/BulletAngle/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/BulletAngle/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/LineAngle/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/LineAngle/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_/CircleState" to="_/_/State&ModeSettings/StateModeContainer/_/_/CircleState" method="_on_item_selected" flags=18]
+[connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_3/SpawnMode" to="_/_/State&ModeSettings/StateModeContainer/_/_3/SpawnMode" method="_on_item_selected" flags=18]
+[connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_2/ReleaseMode" to="_/_/State&ModeSettings/StateModeContainer/_/_2/ReleaseMode" method="_on_item_selected" flags=18]
+[connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_5/AimMode" to="_/_/State&ModeSettings/StateModeContainer/_/_5/AimMode" method="_on_item_selected" flags=18]
+[connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_6/LineMode" to="_/_/State&ModeSettings/StateModeContainer/_/_6/LineMode" method="_on_item_selected" flags=18]
+[connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_4/RandBulletAngleMode" to="_/_/State&ModeSettings/StateModeContainer/_/_4/RandBulletAngleMode" method="_on_item_selected" flags=18]
