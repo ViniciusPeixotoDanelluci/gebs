@@ -3,6 +3,7 @@ extends FoldableContainer
 
 @warning_ignore_start("unused_signal")
 signal property_changed(property_name: String, new_value: Variant, _source: Control)
+signal resource_changed(new_res: BulletResource)
 signal get_property(property_name: String, source: Control)
 
 """

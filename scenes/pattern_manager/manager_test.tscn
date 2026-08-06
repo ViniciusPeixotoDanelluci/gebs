@@ -468,8 +468,9 @@ theme_override_constants/shadow_offset_y = 1
 text = "SpawnMode: Radial"
 horizontal_alignment = 1
 
-[node name="PatternManager" parent="." unique_id=1931359190 node_paths=PackedStringArray("bullet_spawner", "pattern_start_timer") instance=ExtResource("8_oprom")]
+[node name="PatternManager" parent="." unique_id=1931359190 node_paths=PackedStringArray("bullet_spawner", "bullet_container", "pattern_start_timer") instance=ExtResource("8_oprom")]
 bullet_spawner = NodePath("../main/bullet_spawner")
+bullet_container = NodePath("../main/bullet_container")
 pattern_start_timer = NodePath("../main/Timer")
 
 [node name="Debugger" parent="." unique_id=141869206 instance=ExtResource("9_behgd")]
@@ -477,3 +478,5 @@ pattern_start_timer = NodePath("../main/Timer")
 [connection signal="area_shape_entered" from="main/target/Area2D" to="main/target" method="_on_area_shape_entered"]
 [connection signal="timeout" from="main/Timer" to="main/bullet_spawner" method="spawn_bullet"]
 [connection signal="timeout" from="main/Timer" to="main/Timer" method="_timeout"]
+
+[editable path="PatternManager"]
