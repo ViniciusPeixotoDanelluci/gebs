@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://b536sxwmjsrvy"]
+
+[ext_resource type="PackedScene" uid="uid://cllwbmewr7qvj" path="res://scenes/bullet.tscn" id="1_1wmin"]
+[ext_resource type="Texture2D" uid="uid://b8vyn6nmsh4sx" path="res://bullet_assets/valgrid_bullet_ball1.png" id="2_j1emu"]
+[ext_resource type="Script" uid="uid://cj8arwy0x2bi8" path="res://scripts/bullet_resource.gd" id="3_amlyw"]
+[ext_resource type="Texture2D" uid="uid://jsvhdxroacbd" path="res://bullet_assets/valgrid_bullet_ball2.png" id="3_rsbfp"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_behgd"]
+frames = 2
+frame_0/texture = ExtResource("2_j1emu")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("3_rsbfp")
+frame_1/duration = 0.1
+
+[resource]
+script = ExtResource("3_amlyw")
+bullet = ExtResource("1_1wmin")
+bullet_texture = SubResource("AnimatedTexture_behgd")
+max_speed = 3.0
+acceleration = 1.75
+knockback_power = 10

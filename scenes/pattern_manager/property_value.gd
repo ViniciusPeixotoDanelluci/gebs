@@ -15,13 +15,13 @@ func _on_property_value_submitted(new_text: String, source: LineEdit) -> void:
 		_emit_new_value(_initial_value, source)
 		push_warning("The property value must be a number")
 		return
+
 	match _value_type:
 		TYPE_FLOAT:
 			_emit_new_value(str(float(new_text)), source)
 		TYPE_INT:
 			_emit_new_value(str(int(new_text)), source)
 
-func _emit_new_value(new_value: String, source: LineEdit):
-	print(typeof(new_value))
+func _emit_new_value(new_value: String, source: LineEdit) -> void:
 	text = new_value
 	_settings_container.property_changed.emit(_property_name, new_value, source)

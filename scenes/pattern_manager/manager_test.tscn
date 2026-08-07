@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://dyv5ds3yteh3m" path="res://scripts/for_testing/main.gd" id="1_34tg6"]
 [ext_resource type="Script" uid="uid://7ofte2byqlbq" path="res://scripts/bullet_container.gd" id="2_oprom"]
 [ext_resource type="Script" uid="uid://d3gocbintq2pt" path="res://scripts/radial_bullet_spawner.gd" id="3_behgd"]
-[ext_resource type="Resource" path="res://resources/test_bullet.tres" id="4_w2odu"]
+[ext_resource type="Resource" uid="uid://cs5sfwg8i0sf2" path="res://resources/valgrid_bullet_2.tres" id="4_behgd"]
 [ext_resource type="Texture2D" uid="uid://c7wakyauay6sr" path="res://icon.png" id="5_27g5o"]
 [ext_resource type="Script" uid="uid://bjrafjthebrxi" path="res://scripts/for_testing/target.gd" id="6_fo65b"]
 [ext_resource type="Script" uid="uid://cqw20e10k0bnn" path="res://scripts/for_testing/test_timer.gd" id="7_tfmu6"]
 [ext_resource type="PackedScene" uid="uid://umhcxdues32s" path="res://scenes/pattern_manager/pattern_manager.tscn" id="8_oprom"]
+[ext_resource type="PackedScene" uid="uid://bf20kgffccjgl" path="res://scenes/debugger/debugger.tscn" id="9_behgd"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 32.0
@@ -420,10 +421,10 @@ collision_mask = 1024
 script = ExtResource("2_oprom")
 
 [node name="bullet_spawner" type="Node2D" parent="main" unique_id=610930442]
-position = Vector2(512, 300)
+position = Vector2(640, 340)
 script = ExtResource("3_behgd")
 bullet_container = NodePath("../bullet_container")
-bullet_res = ExtResource("4_w2odu")
+bullet_res = ExtResource("4_behgd")
 pool_size = 1000
 point_count = 8
 
@@ -448,20 +449,19 @@ wait_time = 0.2
 script = ExtResource("7_tfmu6")
 
 [node name="Control" type="Control" parent="main" unique_id=1244336670]
+custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1024.0
-offset_bottom = 600.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="Label" type="Label" parent="main/Control" unique_id=683750909]
-layout_mode = 0
-offset_top = 16.0
-offset_right = 1024.0
-offset_bottom = 30.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_bottom = 38.0
+grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
@@ -471,6 +471,8 @@ horizontal_alignment = 1
 [node name="PatternManager" parent="." unique_id=1931359190 node_paths=PackedStringArray("bullet_spawner", "pattern_start_timer") instance=ExtResource("8_oprom")]
 bullet_spawner = NodePath("../main/bullet_spawner")
 pattern_start_timer = NodePath("../main/Timer")
+
+[node name="Debugger" parent="." unique_id=141869206 instance=ExtResource("9_behgd")]
 
 [connection signal="area_shape_entered" from="main/target/Area2D" to="main/target" method="_on_area_shape_entered"]
 [connection signal="timeout" from="main/Timer" to="main/bullet_spawner" method="spawn_bullet"]

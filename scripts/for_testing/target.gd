@@ -11,7 +11,7 @@ func hit():
 								Tween.TRANS_QUART, Tween.EASE_OUT)
 	tween.start()
 
-func _on_area_shape_entered(area_id, area, area_shape, local_shape):
+func _on_area_shape_entered(_area_id, area, area_shape, _local_shape):
 	hit()
 #	area.all_bullets[area_shape].set_physics_process(false)
 	area.reallocate_bullet(area_shape)

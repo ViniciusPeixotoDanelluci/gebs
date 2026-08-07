@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://jg0fi8xevw1w"]
 
 [ext_resource type="Script" uid="uid://d3gocbintq2pt" path="res://scripts/radial_bullet_spawner.gd" id="1"]
-[ext_resource type="Resource" path="res://resources/test_bullet.tres" id="2"]
+[ext_resource type="Resource" uid="uid://nn230i6auppp" path="res://resources/test_bullet.tres" id="2"]
 [ext_resource type="Script" uid="uid://bjrafjthebrxi" path="res://scripts/for_testing/target.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://c7wakyauay6sr" path="res://icon.png" id="4"]
 [ext_resource type="Script" uid="uid://dyv5ds3yteh3m" path="res://scripts/for_testing/main.gd" id="5"]
@@ -415,38 +415,26 @@ script = ExtResource("5")
 [node name="bullet_container" type="Area2D" parent="." unique_id=515010220]
 collision_mask = 1024
 script = ExtResource("6")
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="bullet_spawner" type="Node2D" parent="." unique_id=642600141]
 position = Vector2(512, 300)
 script = ExtResource("1")
-__meta__ = {
-"_edit_group_": true
-}
-bullet_container = NodePath("../bullet_container")
-bullet_res = ExtResource("2")
-pool_size = 1000
-point_count = 15
 local_release_mode = 1
 aim_mode = 1
 line_point_count = 10
 line_length = 390
-arc_width_degrees = 360.0
-arc_rotation_degrees = 102.0
 bullet_angle = 10.4062
 rand_bullet_angle_mode = -1
+bullet_container = NodePath("../bullet_container")
+bullet_res = ExtResource("2")
+pool_size = 1000
+point_count = 15
 
 [node name="target" type="Sprite2D" parent="." unique_id=2078836451]
 position = Vector2(1000, 300)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4")
 script = ExtResource("3")
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="Area2D" type="Area2D" parent="target" unique_id=2068175745]
 collision_layer = 1024
@@ -469,6 +457,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 1024.0
 offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="Control" unique_id=491300475]
 layout_mode = 0
