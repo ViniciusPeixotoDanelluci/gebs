@@ -5,7 +5,7 @@ extends OptionButton
 
 var bullet_resources: Array[BulletResource]
 
-#TODO: Add a bullet Resource Creator
+#TODO: Add a bullet resource creator UI 
 
 func _ready() -> void:
 	if !folder_path:
@@ -19,7 +19,7 @@ func _ready() -> void:
 		raw_img.resize(16, 16)
 		var icon_texture = ImageTexture.create_from_image(raw_img)
 		
-		#TEnho Fazer um bagulho pra evitar que recuross com nomes gigantescos sejam criados
+		#Tnho Fazer um bagulho pra evitar que recuross com nomes gigantescos sejam criados
 		# algo que coloque 3 pontinhos depois de x número é o suficiente se pah 
 		add_icon_item(icon_texture, file_name.capitalize().get_slice(".", 0))
 

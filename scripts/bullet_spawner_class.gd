@@ -43,11 +43,11 @@ func _get_configuration_warnings():
 	return [err]
 
 func _input(event):
-	if event.is_action_pressed("LEFT_CLICK"):
+	if event.is_action_pressed("start_demo"):
 		self.active = true
 	elif event.is_action_pressed("MIDDLE_CLICK"):
 		spawn_bullet()
-	elif event.is_action_pressed("RIGHT_CLICK"):
+	elif event.is_action_pressed("stop_demo"):
 		self.active = false
 
 # ---------------------------------------------------------------------------- #
