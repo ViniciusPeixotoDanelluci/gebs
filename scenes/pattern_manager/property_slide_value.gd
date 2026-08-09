@@ -1,6 +1,10 @@
 class_name SlidePropertyValue
 extends HSlider
 
+### TODO?: in case we want to move this script to the HboxContainer,
+### I could transform the property_name in a enum with type string, 
+### so we wouldn't need to rewrite all the exported variables 
+
 @export var _settings_container: SettingsContainer
 @export var _property_name: String = "name"
 @export var _label: Label

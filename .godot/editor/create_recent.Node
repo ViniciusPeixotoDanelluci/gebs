@@ -1,3 +1,8 @@
+FileDialog
+LineEdit
+Camera2D
+Button
+SettingsContainer
 FoldableContainer
 CharacterBody2D
 HBoxContainer

@@ -3,11 +3,13 @@ extends CanvasLayer
 
 @export var all_settings: Array[SettingsContainer]
 @export var bullet_spawner: RadialBulletSpawner
+@export var bullet_container: BulletContainer
 @export var pattern_start_timer: Timer
 
 func _enter_tree() -> void:
 	for i in all_settings:
 		i.connect("property_changed", _on_prop_change)
+		i.connect("resource_changed", _on_resource_change)
 		i.connect("get_property", _on_get_prop)
 
 func _ready() -> void:
@@ -40,12 +42,16 @@ func _on_get_prop(property_name: String, source: Control):
 			func(a): return a.name == property_name
 		)
 	)
-	# This is the same has:
-	#var prop_index = bullet_spawner.bullet_res.get_property_list()
-	#var propz = prop_index.get(prop_index.find_custom(func(a): return a.name == property_name))
-
+	# This is the same as:
+	#var props_dict = bullet_spawner.bullet_res.get_property_list()
+	#var prop = props_dict.get(props_dict.find_custom(func(a): return a.name == property_name))
+	#print(prop)
+	
 	var min_max_step = prop.hint_string.split(",")
 	source.min_value = float(min_max_step[0])
 	source.max_value = float(min_max_step[1])
 	source.step = float(min_max_step[2])
 	source.value = bullet_spawner.bullet_res.get(prop.name)
+
+func _on_resource_change(new_res: BulletResource):
+	bullet_container.swap_bullet_resource(new_res)

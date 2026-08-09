@@ -33,12 +33,11 @@ func _process(_delta: float) -> void:
 
 	elapsed_time.text = "Elapsed Time: %.2f" % (Time.get_ticks_msec() / 1000.0)
 
-	# Take in note that the bullet count can eat about 100 fps 
-	# with high bullet density. Comment it if you prefer
-
 	var visible_bullets = get_tree().get_nodes_in_group("Bullet").filter(
 		func(node): return node.visible == true
 	).size()
+	# Take in note that the bullet count can eat about 100 fps 
+	# with high bullet density. Comment it if you prefer
 
 	spawned_bullets.text = "Bullets on Screen: %d" % visible_bullets
 

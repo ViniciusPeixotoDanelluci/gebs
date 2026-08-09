@@ -428,6 +428,10 @@ bullet_res = ExtResource("4_behgd")
 pool_size = 1000
 point_count = 8
 
+[node name="Timer" type="Timer" parent="main" unique_id=1072231151]
+wait_time = 0.2
+script = ExtResource("7_tfmu6")
+
 [node name="target" type="Sprite2D" parent="main" unique_id=216079913]
 position = Vector2(1000, 300)
 scale = Vector2(0.5, 0.5)
@@ -443,10 +447,6 @@ disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="main" unique_id=855842794]
 libraries/ = SubResource("AnimationLibrary_wtsjf")
-
-[node name="Timer" type="Timer" parent="main" unique_id=1072231151]
-wait_time = 0.2
-script = ExtResource("7_tfmu6")
 
 [node name="Control" type="Control" parent="main" unique_id=1244336670]
 custom_minimum_size = Vector2(1280, 720)
@@ -468,12 +468,13 @@ theme_override_constants/shadow_offset_y = 1
 text = "SpawnMode: Radial"
 horizontal_alignment = 1
 
-[node name="PatternManager" parent="." unique_id=1931359190 node_paths=PackedStringArray("bullet_spawner", "pattern_start_timer") instance=ExtResource("8_oprom")]
+[node name="PatternManager" parent="." unique_id=1931359190 node_paths=PackedStringArray("bullet_spawner", "bullet_container", "pattern_start_timer") instance=ExtResource("8_oprom")]
 bullet_spawner = NodePath("../main/bullet_spawner")
+bullet_container = NodePath("../main/bullet_container")
 pattern_start_timer = NodePath("../main/Timer")
 
 [node name="Debugger" parent="." unique_id=141869206 instance=ExtResource("9_behgd")]
 
-[connection signal="area_shape_entered" from="main/target/Area2D" to="main/target" method="_on_area_shape_entered"]
 [connection signal="timeout" from="main/Timer" to="main/bullet_spawner" method="spawn_bullet"]
 [connection signal="timeout" from="main/Timer" to="main/Timer" method="_timeout"]
+[connection signal="area_shape_entered" from="main/target/Area2D" to="main/target" method="_on_area_shape_entered"]

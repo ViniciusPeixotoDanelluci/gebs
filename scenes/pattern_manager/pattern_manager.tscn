@@ -6,11 +6,14 @@
 [ext_resource type="Script" uid="uid://bg4cx3ub830q1" path="res://scenes/pattern_manager/toggle_property_value.gd" id="4_ggytp"]
 [ext_resource type="Script" uid="uid://bb8bkxaurao5j" path="res://scenes/pattern_manager/property_slide_value.gd" id="4_mahyb"]
 [ext_resource type="Script" uid="uid://cgqknole6wamc" path="res://scenes/pattern_manager/option_property.gd" id="6_amd7b"]
+[ext_resource type="Script" uid="uid://il33ujxoqqey" path="res://scenes/pattern_manager/bullet_resource_picker.gd" id="8_igdbw"]
+[ext_resource type="Script" uid="uid://m8lwjnwqgwm8" path="res://scenes/pattern_manager/load_button.gd" id="8_niwe2"]
+[ext_resource type="Script" uid="uid://cmstwsb61jamy" path="res://scenes/pattern_manager/save_button.gd" id="9_n1yei"]
 
 [node name="PatternManager" type="CanvasLayer" unique_id=1931359190 node_paths=PackedStringArray("all_settings")]
 process_mode = 3
 script = ExtResource("1_bt2ed")
-all_settings = [NodePath("_/_/BulletSpawnerSettings"), NodePath("_/_/SpawnerSettings"), NodePath("_/_/State&ModeSettings")]
+all_settings = [NodePath("_/_/BulletSettings"), NodePath("_/_/SpawnerSettings"), NodePath("_/_/State&ModeSettings"), NodePath("_/_/Save&LoadSettings")]
 
 [node name="_" type="Control" parent="." unique_id=2083121070]
 layout_mode = 3
@@ -22,42 +25,42 @@ grow_vertical = 2
 
 [node name="_" type="VBoxContainer" parent="_" unique_id=1509841935]
 layout_mode = 0
-offset_right = 276.0
-offset_bottom = 470.0
+offset_right = 280.0
+offset_bottom = 405.0
 theme_override_constants/separation = 0
 
-[node name="BulletSpawnerSettings" type="FoldableContainer" parent="_/_" unique_id=1170434088]
+[node name="BulletSettings" type="FoldableContainer" parent="_/_" unique_id=1170434088]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
-title = "Bullet Spawner Settings"
+title = "Bullet Settings"
 script = ExtResource("2_bt2ed")
 
-[node name="ColorRect" type="ColorRect" parent="_/_/BulletSpawnerSettings" unique_id=2059660109]
+[node name="ColorRect" type="ColorRect" parent="_/_/BulletSettings" unique_id=2059660109]
 layout_mode = 2
 color = Color(0.7350776, 0.3057807, 1, 1)
 
-[node name="PatternManagerContainer" type="PanelContainer" parent="_/_/BulletSpawnerSettings" unique_id=1215155288]
+[node name="PatternManagerContainer" type="PanelContainer" parent="_/_/BulletSettings" unique_id=1215155288]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="_" type="VBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer" unique_id=191929643]
+[node name="_" type="VBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer" unique_id=191929643]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PointCount" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=1467850922]
+[node name="PointCount" type="HBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer/_" unique_id=1467850922]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount" unique_id=1715988226]
+[node name="Label" type="Label" parent="_/_/BulletSettings/PatternManagerContainer/_/PointCount" unique_id=1715988226]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Point Count:"
 
-[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount" unique_id=1180910600]
+[node name="_" type="Control" parent="_/_/BulletSettings/PatternManagerContainer/_/PointCount" unique_id=1180910600]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount" unique_id=355125604 node_paths=PackedStringArray("_settings_container")]
+[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSettings/PatternManagerContainer/_/PointCount" unique_id=355125604 node_paths=PackedStringArray("_settings_container")]
 custom_minimum_size = Vector2(136, 0)
 custom_maximum_size = Vector2(136, -1)
 layout_mode = 2
@@ -72,19 +75,19 @@ _initial_value = "8"
 _property_name = "point_count"
 metadata/_custom_type_script = "uid://cbl1nistg6alp"
 
-[node name="RotationSpeed" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=612348445]
+[node name="RotationSpeed" type="HBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer/_" unique_id=612348445]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed" unique_id=737479984]
+[node name="Label" type="Label" parent="_/_/BulletSettings/PatternManagerContainer/_/RotationSpeed" unique_id=737479984]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Rotation Speed:"
 
-[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed" unique_id=1258711372]
+[node name="_" type="Control" parent="_/_/BulletSettings/PatternManagerContainer/_/RotationSpeed" unique_id=1258711372]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed" unique_id=1698343113 node_paths=PackedStringArray("_settings_container")]
+[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSettings/PatternManagerContainer/_/RotationSpeed" unique_id=1698343113 node_paths=PackedStringArray("_settings_container")]
 custom_minimum_size = Vector2(136, 0)
 custom_maximum_size = Vector2(136, -1)
 layout_mode = 2
@@ -99,56 +102,29 @@ _initial_value = "0.0"
 _property_name = "rotation_speed"
 metadata/_custom_type_script = "uid://cbl1nistg6alp"
 
-[node name="BulletScaleModifier" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=1197246508]
+[node name="BulletScaleModifier" type="HBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer/_" unique_id=893847239]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=1245226104]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Bullet Scale Modifier:"
-
-[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=1607334412]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PropertyValue" type="LineEdit" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=640570932 node_paths=PackedStringArray("_settings_container")]
-custom_minimum_size = Vector2(136, 0)
-custom_maximum_size = Vector2(136, -1)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
-placeholder_text = "0.0"
-virtual_keyboard_type = 3
-script = ExtResource("3_amd7b")
-_settings_container = NodePath("../../../..")
-_value_type = 3
-_initial_value = "0.0"
-_property_name = "bullet_scale_modifier"
-metadata/_custom_type_script = "uid://cbl1nistg6alp"
-
-[node name="BulletScaleModifier2" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=893847239]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier2" unique_id=333539267]
+[node name="Label" type="Label" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=333539267]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Bullet Scale Modifier:"
 
-[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier2" unique_id=447111868]
+[node name="_" type="Control" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=447111868]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="_2" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier2" unique_id=1812932751]
+[node name="_2" type="HBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletScaleModifier" unique_id=1812932751]
 custom_minimum_size = Vector2(136, 0)
 custom_maximum_size = Vector2(136, -1)
 layout_mode = 2
 
-[node name="SlideLabel" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier2/_2" unique_id=1928391944]
+[node name="SlideLabel" type="Label" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletScaleModifier/_2" unique_id=1928391944]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "0.5"
 
-[node name="PropertySlideValue" type="HSlider" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier2/_2" unique_id=1932660429 node_paths=PackedStringArray("_settings_container", "_label")]
+[node name="PropertySlideValue" type="HSlider" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletScaleModifier/_2" unique_id=1932660429 node_paths=PackedStringArray("_settings_container", "_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -157,29 +133,29 @@ _settings_container = NodePath("../../../../..")
 _property_name = "bullet_scale_modifier"
 _label = NodePath("../SlideLabel")
 
-[node name="BulletSpeedModifier" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=867349460]
+[node name="BulletSpeedModifier" type="HBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer/_" unique_id=867349460]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=1225699212]
+[node name="Label" type="Label" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=1225699212]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Bullet Speed Modifier:"
 
-[node name="_" type="Control" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=415499464]
+[node name="_" type="Control" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=415499464]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="_2" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=1760387065]
+[node name="_2" type="HBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletSpeedModifier" unique_id=1760387065]
 custom_minimum_size = Vector2(136, 0)
 custom_maximum_size = Vector2(136, -1)
 layout_mode = 2
 
-[node name="SlideValue" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier/_2" unique_id=295864689]
+[node name="SlideValue" type="Label" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletSpeedModifier/_2" unique_id=295864689]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "0.5"
 
-[node name="PropertySlideValue" type="HSlider" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier/_2" unique_id=30521286 node_paths=PackedStringArray("_settings_container", "_label")]
+[node name="PropertySlideValue" type="HSlider" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletSpeedModifier/_2" unique_id=30521286 node_paths=PackedStringArray("_settings_container", "_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -188,7 +164,7 @@ _settings_container = NodePath("../../../../../../SpawnerSettings")
 _property_name = "bullet_speed_modifier"
 _label = NodePath("../SlideValue")
 
-[node name="ToggleLocalBullets" type="CheckButton" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=914798847 node_paths=PackedStringArray("_settings_container")]
+[node name="ToggleLocalBullets" type="CheckButton" parent="_/_/BulletSettings/PatternManagerContainer/_" unique_id=914798847 node_paths=PackedStringArray("_settings_container")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "LocalBullets"
@@ -196,7 +172,7 @@ script = ExtResource("4_ggytp")
 _settings_container = NodePath("../../..")
 _property_name = "local_bullets"
 
-[node name="ToggleVisual" type="CheckButton" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=526751268 node_paths=PackedStringArray("_settings_container")]
+[node name="ToggleVisual" type="CheckButton" parent="_/_/BulletSettings/PatternManagerContainer/_" unique_id=526751268 node_paths=PackedStringArray("_settings_container")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "DrawVisual"
@@ -205,35 +181,42 @@ _settings_container = NodePath("../../..")
 _initial_value = true
 _property_name = "VISUAL"
 
-[node name="BulletResourceTODO" type="HBoxContainer" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_" unique_id=907540697]
-visible = false
+[node name="BulletResource" type="HBoxContainer" parent="_/_/BulletSettings/PatternManagerContainer/_" unique_id=907540697]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletResourceTODO" unique_id=1366286682]
+[node name="Label" type="Label" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletResource" unique_id=1366286682]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Bullet Resource:"
 
-[node name="OptionValue" type="OptionButton" parent="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletResourceTODO" unique_id=1013249015]
+[node name="_" type="Control" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletResource" unique_id=845843808]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BulletResourcePicker" type="OptionButton" parent="_/_/BulletSettings/PatternManagerContainer/_/BulletResource" unique_id=1013249015 node_paths=PackedStringArray("_settings_container")]
+custom_maximum_size = Vector2(151, 26)
+layout_mode = 2
+theme_override_constants/icon_max_width = 16
 theme_override_font_sizes/font_size = 12
-selected = 0
-item_count = 1
-popup/item_0/text = "Test Bullet"
-popup/item_0/id = 0
+fit_to_longest_item = false
+script = ExtResource("8_igdbw")
+_settings_container = NodePath("../../../..")
 
 [node name="SpawnerSettings" type="FoldableContainer" parent="_/_" unique_id=512516814]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
+folded = true
 title = "Spawner Settings"
 script = ExtResource("2_bt2ed")
 
 [node name="_" type="ColorRect" parent="_/_/SpawnerSettings" unique_id=1832097689]
+visible = false
 layout_mode = 2
 color = Color(0.99815804, 0.6426373, 0.5894919, 1)
 
 [node name="PatternManagerContainer" type="PanelContainer" parent="_/_/SpawnerSettings" unique_id=506586546]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 
@@ -540,14 +523,17 @@ metadata/_custom_type_script = "uid://bg4cx3ub830q1"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
+folded = true
 title = "States&Modes"
 script = ExtResource("2_bt2ed")
 
 [node name="_" type="ColorRect" parent="_/_/State&ModeSettings" unique_id=1381967941]
+visible = false
 layout_mode = 2
 color = Color(0.53751826, 0.7862048, 1, 1)
 
 [node name="StateModeContainer" type="PanelContainer" parent="_/_/State&ModeSettings" unique_id=1129871743]
+visible = false
 layout_mode = 2
 
 [node name="_" type="VBoxContainer" parent="_/_/State&ModeSettings/StateModeContainer" unique_id=1403294293]
@@ -687,160 +673,142 @@ enum_keys = "RandBulletAngleMode"
 
 [node name="Save&LoadSettings" type="FoldableContainer" parent="_/_" unique_id=1503214841]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 title = "States&Modes"
 script = ExtResource("2_bt2ed")
 
-[node name="_" type="ColorRect" parent="_/_/Save&LoadSettings" unique_id=1981247437]
+[node name="_" type="ColorRect" parent="_/_/Save&LoadSettings" unique_id=92616841]
 layout_mode = 2
-color = Color(0.53751826, 0.7862048, 1, 1)
+color = Color(0.51216704, 0.41917136, 2.8878452e-07, 1)
 
-[node name="StateModeContainer" type="PanelContainer" parent="_/_/Save&LoadSettings" unique_id=1317724840]
+[node name="StateModeContainer" type="PanelContainer" parent="_/_/Save&LoadSettings" unique_id=1272728898]
 layout_mode = 2
 
-[node name="_" type="VBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer" unique_id=971675383]
+[node name="_" type="VBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer" unique_id=1662377646]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="_" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1286851394]
+[node name="_" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1703742256]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_" unique_id=169427127]
+[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_" unique_id=786992225]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Cicle State:"
+text = "Save Scene"
 
-[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_" unique_id=1071120825]
+[node name="LoadButton" type="Button" parent="_/_/Save&LoadSettings/StateModeContainer/_/_" unique_id=1436550447]
+layout_mode = 2
+text = "Load Scene"
+script = ExtResource("8_niwe2")
+
+[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_" unique_id=1266818303]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CircleState" type="OptionButton" parent="_/_/Save&LoadSettings/StateModeContainer/_/_" unique_id=1308938193 node_paths=PackedStringArray("_settings_container")]
+[node name="SaveButton" type="Button" parent="_/_/Save&LoadSettings/StateModeContainer/_/_" unique_id=1779930266]
+layout_mode = 2
+text = "Save Scene"
+script = ExtResource("9_n1yei")
+
+[node name="_3" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1032572200]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_3" unique_id=1857939838]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Load Scene"
+
+[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_3" unique_id=153446689]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PropertyValue" type="LineEdit" parent="_/_/Save&LoadSettings/StateModeContainer/_/_3" unique_id=1784724689 node_paths=PackedStringArray("_settings_container")]
+visible = false
+custom_minimum_size = Vector2(195, 0)
+custom_maximum_size = Vector2(195, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "res://scenes/saved_patterns/"
+placeholder_text = "res://path"
+virtual_keyboard_type = 3
+script = ExtResource("3_amd7b")
+_settings_container = NodePath("../../../../../BulletSettings")
+_value_type = 3
+_initial_value = "0.0"
+_property_name = "rotation_speed"
+metadata/_custom_type_script = "uid://cbl1nistg6alp"
+
+[node name="_2" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1624542775]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_2" unique_id=947646828]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_2" unique_id=1784779255]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_5" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=436421975]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_5" unique_id=364156838]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_5" unique_id=273788998]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_4" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=288157820]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_4" unique_id=314198840]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Random Bullet Angle:"
+
+[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_4" unique_id=612000294]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RandBulletAngleMode" type="OptionButton" parent="_/_/Save&LoadSettings/StateModeContainer/_/_4" unique_id=680452859 node_paths=PackedStringArray("_settings_container")]
 custom_minimum_size = Vector2(120, 0)
 custom_maximum_size = Vector2(120, -1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 12
 script = ExtResource("6_amd7b")
-_settings_container = NodePath("../../../..")
-
-[node name="_3" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1338004880]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_3" unique_id=1899347480]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Spawn Mode:"
-
-[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_3" unique_id=1465965838]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpawnMode" type="OptionButton" parent="_/_/Save&LoadSettings/StateModeContainer/_/_3" unique_id=431565254 node_paths=PackedStringArray("_settings_container")]
-custom_minimum_size = Vector2(120, 0)
-custom_maximum_size = Vector2(120, -1)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
-script = ExtResource("6_amd7b")
-_settings_container = NodePath("../../../..")
-enum_keys = "SpawnMode"
-
-[node name="_2" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1251180263]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_2" unique_id=738125049]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Release Mode:"
-
-[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_2" unique_id=1070164125]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ReleaseMode" type="OptionButton" parent="_/_/Save&LoadSettings/StateModeContainer/_/_2" unique_id=1234726789 node_paths=PackedStringArray("_settings_container")]
-custom_minimum_size = Vector2(120, 0)
-custom_maximum_size = Vector2(120, -1)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
-script = ExtResource("6_amd7b")
-_settings_container = NodePath("../../../..")
-enum_keys = "ReleaseMode"
-
-[node name="_5" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1055086518]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_5" unique_id=1392867066]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Aim Mode:"
-
-[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_5" unique_id=2088371588]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="AimMode" type="OptionButton" parent="_/_/Save&LoadSettings/StateModeContainer/_/_5" unique_id=222179438 node_paths=PackedStringArray("_settings_container")]
-custom_minimum_size = Vector2(120, 0)
-custom_maximum_size = Vector2(120, -1)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
-script = ExtResource("6_amd7b")
-_settings_container = NodePath("../../../..")
-enum_keys = "AimMode"
-
-[node name="_6" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=2037432712]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_6" unique_id=1688051661]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Line Mode:"
-
-[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_6" unique_id=762936242]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LineMode" type="OptionButton" parent="_/_/Save&LoadSettings/StateModeContainer/_/_6" unique_id=1371834943 node_paths=PackedStringArray("_settings_container")]
-custom_minimum_size = Vector2(120, 0)
-custom_maximum_size = Vector2(120, -1)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
-script = ExtResource("6_amd7b")
-_settings_container = NodePath("../../../..")
-enum_keys = "LineMode"
-
-[node name="_4" type="HBoxContainer" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=38877141]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="_/_/Save&LoadSettings/StateModeContainer/_/_4" unique_id=945286376]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Random Bullet Angle Mode:"
-
-[node name="_" type="Control" parent="_/_/Save&LoadSettings/StateModeContainer/_/_4" unique_id=781878018]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="RandBulletAngleMode" type="OptionButton" parent="_/_/Save&LoadSettings/StateModeContainer/_/_4" unique_id=1332117428 node_paths=PackedStringArray("_settings_container")]
-custom_minimum_size = Vector2(120, 0)
-custom_maximum_size = Vector2(120, -1)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
-script = ExtResource("6_amd7b")
-_settings_container = NodePath("../../../..")
+_settings_container = NodePath("../../../../../State&ModeSettings")
 enum_keys = "RandBulletAngleMode"
 
-[connection signal="text_submitted" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount/PropertyValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/PointCount/PropertyValue" method="_on_property_value_submitted" flags=18]
-[connection signal="text_submitted" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed/PropertyValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/RotationSpeed/PropertyValue" method="_on_property_value_submitted" flags=18]
-[connection signal="text_submitted" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier/PropertyValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier/PropertyValue" method="_on_property_value_submitted" flags=18]
-[connection signal="value_changed" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier2/_2/PropertySlideValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletScaleModifier2/_2/PropertySlideValue" method="_on_value_changed"]
-[connection signal="value_changed" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier/_2/PropertySlideValue" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/BulletSpeedModifier/_2/PropertySlideValue" method="_on_value_changed"]
-[connection signal="toggled" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleLocalBullets" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleLocalBullets" method="_on_property_toggled" flags=18]
-[connection signal="toggled" from="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleVisual" to="_/_/BulletSpawnerSettings/PatternManagerContainer/_/ToggleVisual" method="_on_property_toggled" flags=18]
+[node name="PathValue" type="LineEdit" parent="_/_/Save&LoadSettings/StateModeContainer/_" unique_id=1376065409]
+visible = false
+layout_mode = 2
+text = "res://scenes/saved_patterns/"
+
+[node name="FileDialog" type="FileDialog" parent="_" unique_id=774138380]
+title = "Open a File"
+size = Vector2i(720, 460)
+dialog_hide_on_ok = true
+file_mode = 0
+root_subfolder = "res://scenes/saved_patterns/"
+filters = PackedStringArray("*.tscn", "Scene Files")
+
+[connection signal="text_submitted" from="_/_/BulletSettings/PatternManagerContainer/_/PointCount/PropertyValue" to="_/_/BulletSettings/PatternManagerContainer/_/PointCount/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="text_submitted" from="_/_/BulletSettings/PatternManagerContainer/_/RotationSpeed/PropertyValue" to="_/_/BulletSettings/PatternManagerContainer/_/RotationSpeed/PropertyValue" method="_on_property_value_submitted" flags=18]
+[connection signal="value_changed" from="_/_/BulletSettings/PatternManagerContainer/_/BulletScaleModifier/_2/PropertySlideValue" to="_/_/BulletSettings/PatternManagerContainer/_/BulletScaleModifier/_2/PropertySlideValue" method="_on_value_changed"]
+[connection signal="value_changed" from="_/_/BulletSettings/PatternManagerContainer/_/BulletSpeedModifier/_2/PropertySlideValue" to="_/_/BulletSettings/PatternManagerContainer/_/BulletSpeedModifier/_2/PropertySlideValue" method="_on_value_changed"]
+[connection signal="toggled" from="_/_/BulletSettings/PatternManagerContainer/_/ToggleLocalBullets" to="_/_/BulletSettings/PatternManagerContainer/_/ToggleLocalBullets" method="_on_property_toggled" flags=18]
+[connection signal="toggled" from="_/_/BulletSettings/PatternManagerContainer/_/ToggleVisual" to="_/_/BulletSettings/PatternManagerContainer/_/ToggleVisual" method="_on_property_toggled" flags=18]
+[connection signal="item_selected" from="_/_/BulletSettings/PatternManagerContainer/_/BulletResource/BulletResourcePicker" to="_/_/BulletSettings/PatternManagerContainer/_/BulletResource/BulletResourcePicker" method="_on_item_selected" flags=18]
 [connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/Radius/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/Radius/PropertyValue" method="_on_property_value_submitted" flags=18]
 [connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/PointCurve/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/PointCurve/PropertyValue" method="_on_property_value_submitted" flags=18]
 [connection signal="text_submitted" from="_/_/SpawnerSettings/PatternManagerContainer/_/ArcWidthDegrees/PropertyValue" to="_/_/SpawnerSettings/PatternManagerContainer/_/ArcWidthDegrees/PropertyValue" method="_on_property_value_submitted" flags=18]
@@ -860,9 +828,9 @@ enum_keys = "RandBulletAngleMode"
 [connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_5/AimMode" to="_/_/State&ModeSettings/StateModeContainer/_/_5/AimMode" method="_on_item_selected" flags=18]
 [connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_6/LineMode" to="_/_/State&ModeSettings/StateModeContainer/_/_6/LineMode" method="_on_item_selected" flags=18]
 [connection signal="item_selected" from="_/_/State&ModeSettings/StateModeContainer/_/_4/RandBulletAngleMode" to="_/_/State&ModeSettings/StateModeContainer/_/_4/RandBulletAngleMode" method="_on_item_selected" flags=18]
-[connection signal="item_selected" from="_/_/Save&LoadSettings/StateModeContainer/_/_/CircleState" to="_/_/Save&LoadSettings/StateModeContainer/_/_/CircleState" method="_on_item_selected" flags=18]
-[connection signal="item_selected" from="_/_/Save&LoadSettings/StateModeContainer/_/_3/SpawnMode" to="_/_/Save&LoadSettings/StateModeContainer/_/_3/SpawnMode" method="_on_item_selected" flags=18]
-[connection signal="item_selected" from="_/_/Save&LoadSettings/StateModeContainer/_/_2/ReleaseMode" to="_/_/Save&LoadSettings/StateModeContainer/_/_2/ReleaseMode" method="_on_item_selected" flags=18]
-[connection signal="item_selected" from="_/_/Save&LoadSettings/StateModeContainer/_/_5/AimMode" to="_/_/Save&LoadSettings/StateModeContainer/_/_5/AimMode" method="_on_item_selected" flags=18]
-[connection signal="item_selected" from="_/_/Save&LoadSettings/StateModeContainer/_/_6/LineMode" to="_/_/Save&LoadSettings/StateModeContainer/_/_6/LineMode" method="_on_item_selected" flags=18]
+[connection signal="pressed" from="_/_/Save&LoadSettings/StateModeContainer/_/_/LoadButton" to="_/_/Save&LoadSettings/StateModeContainer/_/_/LoadButton" method="_on_pressed"]
+[connection signal="pressed" from="_/_/Save&LoadSettings/StateModeContainer/_/_/SaveButton" to="_/_/Save&LoadSettings/StateModeContainer/_/_/SaveButton" method="_on_pressed"]
+[connection signal="text_submitted" from="_/_/Save&LoadSettings/StateModeContainer/_/_3/PropertyValue" to="_/_/Save&LoadSettings/StateModeContainer/_/_3/PropertyValue" method="_on_property_value_submitted" flags=18]
 [connection signal="item_selected" from="_/_/Save&LoadSettings/StateModeContainer/_/_4/RandBulletAngleMode" to="_/_/Save&LoadSettings/StateModeContainer/_/_4/RandBulletAngleMode" method="_on_item_selected" flags=18]
+[connection signal="confirmed" from="_/FileDialog" to="_/_/Save&LoadSettings/StateModeContainer/_/_/LoadButton" method="_on_file_dialog_confirmed"]
+[connection signal="file_selected" from="_/FileDialog" to="_/_/Save&LoadSettings/StateModeContainer/_/_/LoadButton" method="_on_file_dialog_file_selected"]

@@ -5,7 +5,6 @@ extends CheckButton
 @export var _initial_value: bool = false
 @export var _property_name: String = "name"
 
-
 func _ready() -> void:
 	button_pressed = _initial_value
 

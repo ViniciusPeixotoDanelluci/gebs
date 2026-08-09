@@ -34,7 +34,7 @@ func initialize_pool(bullet_res: Resource, pool_size: int) -> BulletPool:
 				n = 0
 				await get_tree().process_frame
 		_complete = true
-	
+
 	print("bullets added to scene %s: %s" % [self, float(Time.get_ticks_msec()) / 1000.0])
 	return pool
 
@@ -47,6 +47,12 @@ func setup_bullet(bullet: Bullet, bullet_res: Resource):
 	bullet.get_child(0).texture = bullet_res.bullet_texture
 	bullet.position = Vector2.ZERO
 	bullet.visible = false
+
+func swap_bullet_resource(new_res: BulletResource) -> void:
+	for i in 1000:
+		var bullet: Bullet = get_child(i)
+		setup_bullet(bullet, new_res)
+		print(new_res)
 
 func reallocate_bullet(shape_id: int):
 	var bullet: Bullet = all_bullets[shape_id]
