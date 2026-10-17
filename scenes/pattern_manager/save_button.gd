@@ -2,15 +2,15 @@ extends Button
 
 @export var target_path: String = "res://scenes/saved_patterns"
 
-@onready var main_node: Node2D = $"../../../../../../../../main"
+@onready var dummy_enemy: TemporaryMain = $"../../../../../../../../DummyEnemy"
 # Temporary
 
 func _on_pressed() -> void:
-	print(main_node)
-	set_owner_recursive(main_node, main_node)
+	print(dummy_enemy)
+	set_owner_recursive(dummy_enemy, dummy_enemy)
 	
 	var packed_scene := PackedScene.new()
-	packed_scene.pack(main_node)
+	packed_scene.pack(dummy_enemy)
 	var error = ResourceSaver.save(
 		packed_scene, 
 		target_path+"/pattern"+str(randi()%20)+".tscn"

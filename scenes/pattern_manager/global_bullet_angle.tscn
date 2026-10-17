@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://tj52tpey20a0"]
+
+[ext_resource type="Script" uid="uid://bg4cx3ub830q1" path="res://scenes/pattern_manager/toggle_property_value.gd" id="1_kmhpf"]
+
+[node name="GlobalBulletAngle" type="CheckButton" unique_id=550607531]
+theme_override_font_sizes/font_size = 12
+script = ExtResource("1_kmhpf")
+metadata/_custom_type_script = "uid://bg4cx3ub830q1"
+
+[connection signal="toggled" from="." to="." method="_on_property_toggled" flags=18]
